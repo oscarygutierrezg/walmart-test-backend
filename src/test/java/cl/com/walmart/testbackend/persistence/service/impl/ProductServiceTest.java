@@ -65,8 +65,9 @@ class ProductServiceTest {
     	p.setImage("Test");
     	p.setId(1);
     	p.setPrice(1);
-    	when(dao.findProductById(ArgumentMatchers.any(Integer.class))).thenReturn(Collections.singletonList(p));
-    	assertFalse(productService.findProductById(1).isEmpty());
+    	Page<Product> page = new PageImpl<>(Collections.singletonList(p));
+    	when(dao.findProductById(ArgumentMatchers.any(Integer.class), ArgumentMatchers.any(Pageable.class))).thenReturn(page);
+    	assertFalse(productService.findProductById(1, 0, 1).isEmpty());
     }
 
 }

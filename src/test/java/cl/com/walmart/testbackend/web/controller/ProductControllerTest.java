@@ -73,26 +73,34 @@ class ProductControllerTest {
 	@Test
 	public void findProductById() throws Exception {
 		String uri = PRODUCTS_ENDPOINT+"/23";
-		when(productService.findProductById(ArgumentMatchers.any(Integer.class))).thenReturn(Collections.singletonList(createProduct()));
+		when(productService.findProductById(ArgumentMatchers.any(Integer.class),
+				ArgumentMatchers.any(Integer.class),
+				ArgumentMatchers.any(Integer.class))).thenReturn(
+						new PageImpl<>(Collections.singletonList(createProduct()))
+						);
 		MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri)
 				.contentType(MediaType.APPLICATION_JSON_VALUE)).andReturn();
 
 		int status = mvcResult.getResponse().getStatus();
 		assertEquals(200, status);
 		String content = mvcResult.getResponse().getContentAsString();
-		assertEquals(content, createProductJson());
+		assertEquals(deserializeProductList(content), createProductJson());
 	}
 	@Test
 	public void findProductByIdPalin() throws Exception {
 		String uri = PRODUCTS_ENDPOINT+"/232";
-		when(productService.findProductById(ArgumentMatchers.any(Integer.class))).thenReturn(Collections.singletonList(createProduct()));
+		when(productService.findProductById(ArgumentMatchers.any(Integer.class),
+				ArgumentMatchers.any(Integer.class),
+				ArgumentMatchers.any(Integer.class))).thenReturn(
+						new PageImpl<>(Collections.singletonList(createProduct()))
+						);
 		MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri)
 				.contentType(MediaType.APPLICATION_JSON_VALUE)).andReturn();
 
 		int status = mvcResult.getResponse().getStatus();
 		assertEquals(200, status);
 		String content = mvcResult.getResponse().getContentAsString();
-		assertEquals(content, createProductDiscountJson());
+		assertEquals(deserializeProductList(content), createProductDiscountJson());
 	}
 	
 	@Test

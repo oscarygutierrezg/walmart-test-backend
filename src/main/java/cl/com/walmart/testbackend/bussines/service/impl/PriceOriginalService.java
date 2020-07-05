@@ -41,14 +41,5 @@ public class PriceOriginalService implements IPriceFormaterService {
 				.build();
 	}
 
-	@Override
-	public List<Product> format(List<Product> products) {
-		List<Product> list = new ArrayList<>();
-		for (Product product :products) {
-			list.add( createProductInfo(product));
-		}
-		return list;
-	}
-
 
 }

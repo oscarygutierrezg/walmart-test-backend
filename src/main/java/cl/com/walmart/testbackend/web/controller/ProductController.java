@@ -1,6 +1,5 @@
 package cl.com.walmart.testbackend.web.controller;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -29,13 +28,16 @@ public class ProductController {
 
 
 	@GetMapping("/{id}")
-	public List<Product> findProductById(@PathVariable("id") int id) {
-		return priceFormaterFactory.createPriceFormater(""+id).format(productService.findProductById(id));
+	public Page<Product> findProductById(@PathVariable("id") int id) {
+		Page<Product> page = productService.findProductById(id, 0, 1);
+		return priceFormaterFactory.createPriceFormater(""+id).format(page,PageRequest.of( 0, 1));
+			
 	}
 
 
 	@PostMapping("findByText")
 	public Page<Product> findByText(@RequestBody ProductDto dto) {
+		System.out.println(dto);
 		Page<Product> page = productService.findProductByText(dto.getText(), dto.getPage(), dto.getSize());
 		if(page.getContent().isEmpty()) {
 			page = productService.findProductByBrandOrDescription(dto.getText(), dto.getPage(), dto.getSize());

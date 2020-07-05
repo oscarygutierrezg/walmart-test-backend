@@ -1,4 +1,4 @@
-package cl.com.walmart.testbackend.config;
+package cl.com.walmart.testbackend.spring.config;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

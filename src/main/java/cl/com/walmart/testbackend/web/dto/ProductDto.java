@@ -25,6 +25,12 @@ public class ProductDto {
 	public void setSize(int size) {
 		this.size = size;
 	}
+	@Override
+	public String toString() {
+		return "ProductDto [text=" + text + ", page=" + page + ", size=" + size + "]";
+	}
+	
+	
 	
 	
 }

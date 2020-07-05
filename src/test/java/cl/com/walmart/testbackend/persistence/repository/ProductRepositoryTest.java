@@ -29,7 +29,15 @@ class ProductRepositoryTest {
 		final Product p = new Product();
 		p.setId(1000000);
 		Product pNew = productRepository.insert(p);
-		assertTrue(productRepository.findProductById(1).size()==1);
+
+		final Pageable pageableRequest = PageRequest.of(0, 1);
+		final Page<Product> page = productRepository.findProductById(1000000,pageableRequest);
+		List<Product> Products = page.getContent();
+		
+
+		assertEquals(1, Products.size());
+		assertEquals(1, page.getTotalPages());
+	
 		productRepository.delete(pNew);
 
 	}

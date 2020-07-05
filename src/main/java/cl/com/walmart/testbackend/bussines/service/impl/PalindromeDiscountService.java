@@ -29,15 +29,6 @@ public class PalindromeDiscountService implements IPriceFormaterService {
 		return new PageImpl<>(products, pageable, page.getTotalElements());
 	}
 
-	@Override
-	public List<Product> format(List<Product> products) {
-		List<Product> list = new ArrayList<>();
-		for (Product product :products) {
-			list.add(createProductInfo(product));
-		}
-		return list;
-	}
-
 	private Product createProductInfo(Product product) {
 		return new ProductDiscount.Builder().
 				brand(product.getBrand()).

@@ -1,6 +1,5 @@
 package cl.com.walmart.testbackend.persistence.service.impl;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -24,8 +23,8 @@ public class ProductService implements IProductService {
     }
 
 	@Override
-	public List<Product> findProductById(int id) {
-		return repository.findProductById(id);
+	public Page<Product> findProductById(int id, int page, int size) {
+		return repository.findProductById(id,PageRequest.of(page, size));
 	}
 
 	@Override
