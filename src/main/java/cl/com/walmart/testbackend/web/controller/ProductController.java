@@ -37,7 +37,6 @@ public class ProductController {
 
 	@PostMapping("findByText")
 	public Page<Product> findByText(@RequestBody ProductDto dto) {
-		System.out.println(dto);
 		Page<Product> page = productService.findProductByText(dto.getText(), dto.getPage(), dto.getSize());
 		if(page.getContent().isEmpty()) {
 			page = productService.findProductByBrandOrDescription(dto.getText(), dto.getPage(), dto.getSize());

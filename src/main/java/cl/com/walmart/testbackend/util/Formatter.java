@@ -12,7 +12,7 @@ public class Formatter {
 
 	public DiscountInfo makeDiscountInfo(double percentaje, int amount) {
 		DiscountInfo discountInfo = new DiscountInfo();
-		discountInfo.setPercentage(formatAmount((percentaje*100),0)+"%");
+		discountInfo.setPercentage(((int)(percentaje*100))+"%");
 		discountInfo.setPriceWithDiscount(formatAmount((percentaje*amount),0));
 		discountInfo.setOriginalPrice(formatAmount(amount,0));
 		return discountInfo;
